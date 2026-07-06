@@ -48,6 +48,27 @@ const perks = [
   { icon: TrendingUp, title: "Boost Your Skills", desc: "Sharpen your profile & career." },
 ];
 
+const logistics = [
+  {
+    label: "DATE",
+    phase: "Batch 1",
+    value: "Launching Late 2026",
+    note: "Early registrants will receive the first release window.",
+  },
+  {
+    label: "TIME",
+    phase: "Schedule",
+    value: "To Be Released to Early Registered Users",
+    note: "Final timing is being staged for confirmed attendees.",
+  },
+  {
+    label: "VENUE",
+    phase: "Location",
+    value: "Campus Partner Site",
+    note: "Venue details will be shared with the first batch.",
+  },
+];
+
 function useReveal() {
   useEffect(() => {
     const els = document.querySelectorAll(".reveal");
@@ -416,24 +437,46 @@ function Index() {
       {/* EVENT STATUS */}
       <section id="register" className="py-16">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <div className="grid md:grid-cols-3 gap-4">
-            {[
-              { k: "DATE", v: "Coming Soon" },
-              { k: "TIME", v: "Coming Soon" },
-              { k: "VENUE", v: "To Be Announced" },
-            ].map((e) => (
-              <div key={e.k} className="glass rounded-2xl p-5 flex items-center gap-4 neon-glow-hover">
-                <div className="relative flex h-3 w-3 shrink-0">
-                  <span className="absolute inset-0 rounded-full bg-destructive animate-pulse-dot" />
-                  <span className="relative h-3 w-3 rounded-full bg-destructive" />
-                </div>
-                <div className="min-w-0">
-                  <div className="text-[10px] tracking-[0.3em] text-destructive font-bold">LIVE</div>
-                  <div className="text-xs tracking-widest text-muted-foreground">{e.k}</div>
-                  <div className="text-base font-semibold text-silver truncate">{e.v}</div>
-                </div>
+          <div className="premium-tech-card glow-cyan rounded-3xl p-6 md:p-8 relative overflow-hidden">
+            <div className="absolute -top-16 -right-16 h-48 w-48 rounded-full blur-3xl opacity-30 pointer-events-none"
+              style={{ background: "var(--gradient-glow)" }} />
+            <div className="relative flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+              <div>
+                <div className="text-[10px] tracking-[0.35em] text-cyan-neon">EVENT LOGISTICS</div>
+                <h3 className="mt-2 text-2xl md:text-3xl font-semibold text-silver">
+                  Schedule console is in final calibration.
+                </h3>
+                <p className="mt-2 max-w-2xl text-sm text-muted-foreground leading-relaxed">
+                  We are finalizing the release sequence so the first registered cohort gets a clean launch path.
+                </p>
               </div>
-            ))}
+
+              <div className="inline-flex items-center gap-2 self-start rounded-full border border-amber-400/20 bg-amber-400/10 px-4 py-2 text-[10px] md:text-[11px] tracking-[0.28em] text-amber-100">
+                <span className="relative flex h-2.5 w-2.5 shrink-0">
+                  <span className="absolute inset-0 rounded-full bg-amber-400 animate-pulse-dot" />
+                  <span className="relative h-2.5 w-2.5 rounded-full bg-amber-300 shadow-[0_0_16px_rgba(251,191,36,0.65)]" />
+                </span>
+                Finalizing Schedule
+              </div>
+            </div>
+
+            <div className="relative mt-6 grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/5 md:grid-cols-3">
+              {logistics.map((item) => (
+                <div key={item.label} className="glass rounded-none border-0 bg-transparent p-5 md:p-6">
+                  <div className="text-[10px] tracking-[0.35em] text-cyan-neon font-semibold">{item.label}</div>
+                  <div className="mt-3 flex items-center gap-2 text-[11px] tracking-[0.28em] text-muted-foreground uppercase">
+                    <span className="h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse-dot shadow-[0_0_10px_rgba(251,191,36,0.55)]" />
+                    {item.phase}
+                  </div>
+                  <div className="mt-3 text-base md:text-lg font-semibold text-silver leading-snug">
+                    {item.value}
+                  </div>
+                  <div className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                    {item.note}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
