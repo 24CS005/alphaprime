@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import logo from "@/assets/alpha-prime-logo.png.asset.json";
 import iotBoard from "@/assets/iot-board.jpg";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 export const Route = createFileRoute("/")({ component: Index });
 
@@ -66,6 +67,29 @@ const logistics = [
     phase: "Location",
     value: "Campus Partner Site",
     note: "Venue details will be shared with the first batch.",
+  },
+];
+
+const faqItems = [
+  {
+    question: "Do I need prior coding or electronics experience?",
+    answer:
+      "Not at all! We start from the absolute basics, mapping every complex concept to intuitive human analogies.",
+  },
+  {
+    question: "Will I get hands-on experience with hardware?",
+    answer:
+      "Yes, this workshop is heavily project-driven. You will work directly with microcontrollers, sensors, and live cloud setups.",
+  },
+  {
+    question: "Who is this workshop for?",
+    answer:
+      "Engineering students, tech enthusiasts, and anyone curious about building smart devices and full-stack IoT ecosystems.",
+  },
+  {
+    question: "Will certificates be provided?",
+    answer:
+      "Yes, all participants will receive an official certificate from Alpha Prime Technologies upon completing the projects.",
   },
 ];
 
@@ -482,6 +506,42 @@ function Index() {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-16 md:py-20">
+        <div className="max-w-5xl mx-auto px-4 md:px-8">
+          <div className="reveal premium-tech-card glow-purple rounded-3xl p-6 md:p-8 relative overflow-hidden">
+            <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full blur-3xl opacity-25 pointer-events-none"
+              style={{ background: "var(--gradient-glow)" }} />
+            <div className="relative">
+              <div className="text-xs tracking-[0.35em] text-cyan-neon">FREQUENTLY ASKED QUESTIONS</div>
+              <h3 className="mt-3 text-2xl md:text-3xl font-semibold text-silver">
+                Clear answers. Fast decisions. No friction.
+              </h3>
+              <p className="mt-2 text-sm text-muted-foreground max-w-2xl leading-relaxed">
+                A compact FAQ panel designed for quick scanning on mobile and desktop, with smooth expand and collapse motion.
+              </p>
+
+              <Accordion type="single" collapsible className="mt-6 space-y-3">
+                {faqItems.map((item) => (
+                  <AccordionItem
+                    key={item.question}
+                    value={item.question}
+                    className="rounded-2xl border border-white/10 bg-white/5 px-4 data-[state=open]:border-cyan-neon/30 data-[state=open]:bg-cyan-neon/5"
+                  >
+                    <AccordionTrigger className="py-5 text-left text-sm md:text-base font-semibold text-silver no-underline hover:no-underline">
+                      {item.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="pb-5 pr-8 text-sm text-muted-foreground leading-relaxed">
+                      {item.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
             </div>
           </div>
         </div>
