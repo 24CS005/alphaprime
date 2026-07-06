@@ -423,7 +423,7 @@ function Index() {
               </ul>
             </div>
 
-            <div id="audience" className="reveal hidden lg:flex flex-col items-center justify-center px-4">
+            <div className="reveal hidden lg:flex flex-col items-center justify-center px-4">
               <div className="relative h-56 w-56">
                 <div className="absolute inset-0 rounded-full animate-pulse-ring" />
                 <div className="absolute inset-4 rounded-full border border-cyan-neon/30" />
@@ -566,7 +566,7 @@ function Index() {
       </section>
 
       {/* FAQ */}
-      <section className="py-16 md:py-20">
+      <section id="audience" className="py-16 md:py-20 scroll-mt-28 md:scroll-mt-32">
         <div className="max-w-5xl mx-auto px-4 md:px-8">
           <div className="reveal premium-tech-card glow-purple rounded-3xl p-6 md:p-8 relative overflow-hidden">
             <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full blur-3xl opacity-25 pointer-events-none"
