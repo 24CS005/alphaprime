@@ -166,7 +166,7 @@ function Index() {
 
               <div className="mt-10 grid grid-cols-3 gap-4 max-w-md">
                 {[{ k: "6+", v: "Modules" }, { k: "Live", v: "Projects" }, { k: "1:1", v: "Mentorship" }].map((s) => (
-                  <div key={s.v} className="glass rounded-xl px-3 py-3 text-center neon-glow-hover">
+                  <div key={s.v} className="premium-tech-card glow-emerald rounded-xl px-3 py-3 text-center">
                     <div className="text-2xl font-bold text-gradient">{s.k}</div>
                     <div className="text-[11px] tracking-widest text-muted-foreground uppercase">{s.v}</div>
                   </div>
@@ -326,7 +326,7 @@ function Index() {
             title={<><span className="text-silver">Built to make you </span><span className="text-gradient">unstoppable</span></>} />
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-14">
             {pillars.map((p) => (
-              <div key={p.title} className="reveal glass rounded-2xl p-6 neon-glow-hover group relative overflow-hidden">
+              <div key={p.title} className="reveal premium-tech-card glow-cyan rounded-2xl p-6 group relative overflow-hidden">
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
                   style={{ background: "var(--gradient-glow)" }} />
                 <div className="relative">
@@ -539,7 +539,7 @@ function HeroVisual() {
       <div className="absolute inset-8 rounded-full border border-cyan-neon/15" />
       <div className="absolute inset-16 rounded-full border border-cyan-neon/10" />
 
-      <div className="absolute inset-[18%] rounded-2xl overflow-hidden glass neon-glow animate-float">
+      <div className="absolute inset-[18%] premium-tech-card glow-purple rounded-2xl overflow-hidden animate-float">
         <img src={iotBoard} alt="ESP32 microcontroller with DHT sensor"
           className="h-full w-full object-cover" width={1280} height={1024} />
         <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/60 via-transparent to-transparent" />
