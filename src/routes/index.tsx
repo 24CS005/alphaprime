@@ -93,6 +93,15 @@ const faqItems = [
   },
 ];
 
+const tools = [
+  { title: "ESP32 / NodeMCU", detail: "Microcontroller foundations for smart hardware builds.", tag: "HARDWARE" },
+  { title: "JavaScript (ES6+)", detail: "Core logic, interaction, and modern front-end control.", tag: "CODE" },
+  { title: "HTML5 & CSS3", detail: "Semantic structure and responsive interface styling.", tag: "UI" },
+  { title: "Wi-Fi & MQTT Protocols", detail: "Device connectivity, messaging, and live data flow.", tag: "NETWORK" },
+  { title: "Git & GitHub", detail: "Version control workflows for collaborative builds.", tag: "VERSIONING" },
+  { title: "Cloud Architecture", detail: "Deployments, integrations, and scalable IoT backends.", tag: "CLOUD" },
+];
+
 function useReveal() {
   useEffect(() => {
     const els = document.querySelectorAll(".reveal");
@@ -506,6 +515,51 @@ function Index() {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* TOOLS */}
+      <section className="py-16 md:py-20">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+          <div className="reveal premium-tech-card glow-cyan rounded-3xl p-6 md:p-8 relative overflow-hidden">
+            <div className="absolute -top-24 -left-24 h-64 w-64 rounded-full blur-3xl opacity-20 pointer-events-none"
+              style={{ background: "var(--gradient-glow)" }} />
+            <div className="relative">
+              <div className="text-xs tracking-[0.35em] text-cyan-neon">WORKSHOP STACK</div>
+              <h3 className="mt-3 text-2xl md:text-3xl font-semibold text-silver">
+                Tools & Technologies You Will Master
+              </h3>
+              <p className="mt-2 max-w-2xl text-sm text-muted-foreground leading-relaxed">
+                A clean, mobile-friendly overview of the core stack so learners can see the full ecosystem at a glance.
+              </p>
+
+              <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                {tools.map((tool, index) => (
+                  <div
+                    key={tool.title}
+                    className="group rounded-2xl border border-white/10 bg-white/[0.04] p-4 backdrop-blur-md transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-cyan-neon/25 hover:bg-white/[0.06]"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div>
+                        <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/20 px-2.5 py-1 text-[10px] tracking-[0.28em] text-cyan-neon/90">
+                          <span className="h-1.5 w-1.5 rounded-full bg-cyan-neon shadow-[0_0_12px_var(--cyan-neon)]" />
+                          {tool.tag}
+                        </div>
+                        <h4 className="mt-4 text-base font-semibold text-silver">{tool.title}</h4>
+                      </div>
+                      <div className="mt-1 text-[10px] font-mono tracking-[0.35em] text-muted-foreground/80">
+                        0{index + 1}
+                      </div>
+                    </div>
+                    <div className="mt-4 h-px w-full bg-gradient-to-r from-cyan-neon/60 via-electric/40 to-transparent" />
+                    <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
+                      {tool.detail}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
