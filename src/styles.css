@@ -97,6 +97,42 @@
   backdrop-filter: blur(18px) saturate(140%);
 }
 
+@utility premium-tech-card {
+  background:
+    linear-gradient(135deg, oklch(1 0 0 / 0.08), oklch(1 0 0 / 0.03)),
+    oklch(0.12 0.035 265 / 0.72);
+  border: 1px solid oklch(1 0 0 / 0.1);
+  backdrop-filter: blur(30px) saturate(170%);
+  -webkit-backdrop-filter: blur(30px) saturate(170%);
+  box-shadow: var(--tech-card-shadow, 0 18px 50px oklch(0 0 0 / 0.24));
+  transition: all 300ms ease-in-out;
+  will-change: transform, box-shadow, border-color;
+
+  &:hover {
+    transform: translateY(-4px) scale(1.02);
+    border-color: oklch(1 0 0 / 0.18);
+    box-shadow: var(
+      --tech-card-shadow-hover,
+      0 22px 64px oklch(0 0 0 / 0.34)
+    );
+  }
+}
+
+@utility glow-cyan {
+  --tech-card-shadow: 0 18px 50px oklch(0.85 0.18 220 / 0.18), 0 0 0 1px oklch(0.85 0.18 220 / 0.08);
+  --tech-card-shadow-hover: 0 24px 72px oklch(0.85 0.18 220 / 0.32), 0 0 42px oklch(0.65 0.22 250 / 0.18);
+}
+
+@utility glow-purple {
+  --tech-card-shadow: 0 18px 50px oklch(0.65 0.22 250 / 0.18), 0 0 0 1px oklch(0.65 0.22 250 / 0.08);
+  --tech-card-shadow-hover: 0 24px 72px oklch(0.65 0.22 250 / 0.32), 0 0 42px oklch(0.85 0.18 220 / 0.18);
+}
+
+@utility glow-emerald {
+  --tech-card-shadow: 0 18px 50px oklch(0.74 0.14 155 / 0.18), 0 0 0 1px oklch(0.74 0.14 155 / 0.08);
+  --tech-card-shadow-hover: 0 24px 72px oklch(0.74 0.14 155 / 0.32), 0 0 42px oklch(0.74 0.14 155 / 0.18);
+}
+
 @utility neon-border {
   box-shadow: 0 0 0 1px oklch(0.85 0.18 220 / 0.4), 0 0 24px oklch(0.85 0.18 220 / 0.25), inset 0 0 20px oklch(0.65 0.22 250 / 0.08);
 }
