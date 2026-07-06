@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import logo from "@/assets/alpha-prime-logo.png.asset.json";
 import iotBoard from "@/assets/iot-board.jpg";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 export const Route = createFileRoute("/")({ component: Index });
 
@@ -69,6 +70,38 @@ const logistics = [
   },
 ];
 
+const faqItems = [
+  {
+    question: "Do I need prior coding or electronics experience?",
+    answer:
+      "Not at all! We start from the absolute basics, mapping every complex concept to intuitive human analogies.",
+  },
+  {
+    question: "Will I get hands-on experience with hardware?",
+    answer:
+      "Yes, this workshop is heavily project-driven. You will work directly with microcontrollers, sensors, and live cloud setups.",
+  },
+  {
+    question: "Who is this workshop for?",
+    answer:
+      "Engineering students, tech enthusiasts, and anyone curious about building smart devices and full-stack IoT ecosystems.",
+  },
+  {
+    question: "Will certificates be provided?",
+    answer:
+      "Yes, all participants will receive an official certificate from Alpha Prime Technologies upon completing the projects.",
+  },
+];
+
+const tools = [
+  { title: "ESP32 / NodeMCU", detail: "Microcontroller foundations for smart hardware builds.", tag: "HARDWARE" },
+  { title: "JavaScript (ES6+)", detail: "Core logic, interaction, and modern front-end control.", tag: "CODE" },
+  { title: "HTML5 & CSS3", detail: "Semantic structure and responsive interface styling.", tag: "UI" },
+  { title: "Wi-Fi & MQTT Protocols", detail: "Device connectivity, messaging, and live data flow.", tag: "NETWORK" },
+  { title: "Git & GitHub", detail: "Version control workflows for collaborative builds.", tag: "VERSIONING" },
+  { title: "Cloud Architecture", detail: "Deployments, integrations, and scalable IoT backends.", tag: "CLOUD" },
+];
+
 function useReveal() {
   useEffect(() => {
     const els = document.querySelectorAll(".reveal");
@@ -86,6 +119,12 @@ function Index() {
   const [scrolled, setScrolled] = useState(false);
   useReveal();
   useEffect(() => {
+    if (window.location.hash) {
+      window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
+    }
+    window.history.scrollRestoration = "manual";
+    window.scrollTo(0, 0);
+
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
@@ -476,6 +515,87 @@ function Index() {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* TOOLS */}
+      <section className="py-16 md:py-20">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+          <div className="reveal premium-tech-card glow-cyan rounded-3xl p-6 md:p-8 relative overflow-hidden">
+            <div className="absolute -top-24 -left-24 h-64 w-64 rounded-full blur-3xl opacity-20 pointer-events-none"
+              style={{ background: "var(--gradient-glow)" }} />
+            <div className="relative">
+              <div className="text-xs tracking-[0.35em] text-cyan-neon">WORKSHOP STACK</div>
+              <h3 className="mt-3 text-2xl md:text-3xl font-semibold text-silver">
+                Tools & Technologies You Will Master
+              </h3>
+              <p className="mt-2 max-w-2xl text-sm text-muted-foreground leading-relaxed">
+                A clean, mobile-friendly overview of the core stack so learners can see the full ecosystem at a glance.
+              </p>
+
+              <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                {tools.map((tool, index) => (
+                  <div
+                    key={tool.title}
+                    className="group rounded-2xl border border-white/10 bg-white/[0.04] p-4 backdrop-blur-md transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-cyan-neon/25 hover:bg-white/[0.06]"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div>
+                        <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/20 px-2.5 py-1 text-[10px] tracking-[0.28em] text-cyan-neon/90">
+                          <span className="h-1.5 w-1.5 rounded-full bg-cyan-neon shadow-[0_0_12px_var(--cyan-neon)]" />
+                          {tool.tag}
+                        </div>
+                        <h4 className="mt-4 text-base font-semibold text-silver">{tool.title}</h4>
+                      </div>
+                      <div className="mt-1 text-[10px] font-mono tracking-[0.35em] text-muted-foreground/80">
+                        0{index + 1}
+                      </div>
+                    </div>
+                    <div className="mt-4 h-px w-full bg-gradient-to-r from-cyan-neon/60 via-electric/40 to-transparent" />
+                    <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
+                      {tool.detail}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-16 md:py-20">
+        <div className="max-w-5xl mx-auto px-4 md:px-8">
+          <div className="reveal premium-tech-card glow-purple rounded-3xl p-6 md:p-8 relative overflow-hidden">
+            <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full blur-3xl opacity-25 pointer-events-none"
+              style={{ background: "var(--gradient-glow)" }} />
+            <div className="relative">
+              <div className="text-xs tracking-[0.35em] text-cyan-neon">FREQUENTLY ASKED QUESTIONS</div>
+              <h3 className="mt-3 text-2xl md:text-3xl font-semibold text-silver">
+                Clear answers. Fast decisions. No friction.
+              </h3>
+              <p className="mt-2 text-sm text-muted-foreground max-w-2xl leading-relaxed">
+                A compact FAQ panel designed for quick scanning on mobile and desktop, with smooth expand and collapse motion.
+              </p>
+
+              <Accordion type="single" collapsible className="mt-6 space-y-3">
+                {faqItems.map((item) => (
+                  <AccordionItem
+                    key={item.question}
+                    value={item.question}
+                    className="rounded-2xl border border-white/10 bg-white/5 px-4 data-[state=open]:border-cyan-neon/30 data-[state=open]:bg-cyan-neon/5"
+                  >
+                    <AccordionTrigger className="py-5 text-left text-sm md:text-base font-semibold text-silver no-underline hover:no-underline">
+                      {item.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="pb-5 pr-8 text-sm text-muted-foreground leading-relaxed">
+                      {item.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
             </div>
           </div>
         </div>
