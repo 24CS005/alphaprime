@@ -30,12 +30,12 @@ const curriculum = [
   "Sensors & Actuators Interface",
   "Microcontrollers (ESP32 / NodeMCU)",
   "Connectivity: Wi-Fi & IoT Protocols",
-  "Cloud Integration & Data Visualization",
-  "Build & Demonstrate Real-World Projects",
+  "Front-End Foundations",
+  "JavaScript Version Control",
 ];
 
 const audience = [
-  { title: "Engineering Students", desc: "Level up your academic projects with real hardware." },
+  { title: " Students", desc: "Level up your academic projects with real hardware." },
   { title: "Tech Enthusiasts", desc: "Turn curiosity into working smart devices." },
   { title: "Innovators & Makers", desc: "Prototype ideas that live beyond the whiteboard." },
   { title: "Smart Tech Curious", desc: "No prior experience? Start here — we'll guide you." },
@@ -77,7 +77,7 @@ function Index() {
           <div className="glass rounded-2xl px-4 md:px-6 py-3 flex items-center gap-4">
             <a href="#home" className="flex items-center gap-3 min-w-0 shrink-0">
               <div className="h-10 w-10 shrink-0 rounded-xl overflow-hidden neon-border">
-                <img src={logo.url} alt="Alpha Prime" className="h-full w-full object-cover" />
+                <img src="/alp.png" alt="Alpha Prime" className="h-full w-full object-cover" />
               </div>
               <div className="hidden sm:block min-w-0 leading-tight">
                 <div className="text-[13px] font-bold tracking-[0.18em] text-silver truncate">
@@ -441,11 +441,11 @@ function Index() {
       {/* FOOTER */}
       <footer id="contact" className="mt-16 border-t border-border/50">
         <div className="max-w-7xl mx-auto px-4 md:px-8 py-14">
-          <div className="grid md:grid-cols-[1.2fr_1fr_1fr] gap-10">
+          <div className="grid gap-10 md:grid-cols-3 md:items-start">
             <div>
               <div className="flex items-center gap-3">
                 <div className="h-12 w-12 rounded-xl overflow-hidden neon-border">
-                  <img src={logo.url} alt="Alpha Prime" className="h-full w-full object-cover" />
+                  <img src="/alp.png" alt="Alpha Prime" className="h-full w-full object-cover" />
                 </div>
                 <div className="leading-tight">
                   <div className="text-sm font-bold tracking-[0.18em] text-silver">
@@ -460,45 +460,42 @@ function Index() {
                 Empowering the next generation of engineers with hands-on smart
                 technology, IoT, cloud & automation experiences.
               </p>
-              <div className="mt-4 text-sm">
-                <div className="text-xs tracking-[0.3em] text-cyan-neon mb-2">TEAM</div>
-                <ul className="space-y-1 text-sm text-muted-foreground">
-                  <li><strong>Founder:</strong> Aparna A</li>
-                  <li><strong>IoT Trainer:</strong> Ms Aparna</li>
-                  <li><strong>Web Development Trainer:</strong> Ms Joeshika</li>
-                </ul>
-              </div>
             </div>
+
             <div>
-              <div className="text-xs tracking-[0.3em] text-cyan-neon mb-4">EXPLORE</div>
-              <ul className="space-y-2 text-sm">
-                {nav.map((n) => (
-                  <li key={n.href}>
-                    <a href={n.href} className="text-muted-foreground hover:text-cyan-neon transition-colors">
-                      {n.label}
-                    </a>
-                  </li>
-                ))}
+              <div className="text-xs tracking-[0.3em] text-cyan-neon mb-3">TEAM</div>
+              <ul className="space-y-1 text-sm text-muted-foreground">
+                <li><strong>Founder:</strong> Aparna A</li>
+                <li><strong>IoT Trainer:</strong> Ms Aparna</li>
+                <li><strong>Web Development Trainer:</strong> Ms Joshika</li>
               </ul>
             </div>
+
             <div>
               <div className="text-xs tracking-[0.3em] text-cyan-neon mb-4">CONTACT</div>
               <ul className="space-y-3 text-sm">
                 <li className="flex items-center gap-3 text-muted-foreground">
                   <Globe className="h-4 w-4 text-cyan-neon shrink-0" />
-                  <a href="https://www.alphaprimetechnologies.in" className="hover:text-cyan-neon truncate">
+                  <a href="https://alphaprimetechnologies.in" className="hover:text-cyan-neon truncate">
                     www.alphaprimetechnologies.in
                   </a>
                 </li>
                 <li className="flex items-center gap-3 text-muted-foreground">
                   <Mail className="h-4 w-4 text-cyan-neon shrink-0" />
-                  <a href="mailto:info@alphaprimetechnologies.in" className="hover:text-cyan-neon truncate">
-                    info@alphaprimetechnologies.in
+                  <a href="mailto:alphaprimetechnologies01@gmail.com" className="hover:text-cyan-neon truncate">
+                    alphaprimetechnologies01@gmail.com
                   </a>
                 </li>
                 <li className="flex items-center gap-3 text-muted-foreground">
                   <Phone className="h-4 w-4 text-cyan-neon shrink-0" />
-                  <a href="tel:+919876543210" className="hover:text-cyan-neon">+91 98765 43210</a>
+                  <a
+                    href="https://wa.me/917810009612?text=Hello%20Alpha%20Prime%20Technologies%2C%20I%20would%20like%20to%20know%20more."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-cyan-neon"
+                  >
+                    +91 78100 09612
+                  </a>
                 </li>
               </ul>
             </div>

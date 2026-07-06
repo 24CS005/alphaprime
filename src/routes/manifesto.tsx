@@ -11,7 +11,7 @@ function ManifestoPage() {
         <div className="max-w-5xl mx-auto px-4">
           <div className="flex items-center gap-4">
             <div className="h-12 w-12 rounded-xl overflow-hidden neon-border">
-              <img src={logo.url} alt="Alpha Prime" className="h-full w-full object-cover" />
+              <img src="/alp.png" alt="Alpha Prime" className="h-full w-full object-cover" />
             </div>
             <div>
               <div className="text-lg font-bold">Alpha Prime Technologies</div>
