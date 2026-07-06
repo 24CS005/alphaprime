@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import {
   Rocket, Cpu, Cloud, Wifi, Shield, CheckCircle2, Sparkles, Menu, X,
   Wrench, Zap, Users, Lightbulb, Award, Network, TrendingUp, FolderKanban,
-  Mail, Phone, Globe, ArrowRight, ChevronRight,
+  Mail, Phone, ArrowRight, ChevronRight,
 } from "lucide-react";
 import logo from "@/assets/alpha-prime-logo.png.asset.json";
 import iotBoard from "@/assets/iot-board.jpg";
@@ -517,12 +517,6 @@ function Index() {
             <div>
               <div className="text-xs tracking-[0.3em] text-cyan-neon mb-4">CONTACT</div>
               <ul className="space-y-3 text-sm">
-                <li className="flex items-center gap-3 text-muted-foreground">
-                  <Globe className="h-4 w-4 text-cyan-neon shrink-0" />
-                  <a href="https://alphaprimetechnologies.in" className="hover:text-cyan-neon truncate">
-                    www.alphaprimetechnologies.in
-                  </a>
-                </li>
                 <li className="flex items-center gap-3 text-muted-foreground">
                   <Mail className="h-4 w-4 text-cyan-neon shrink-0" />
                   <a href="mailto:alphaprimetechnologies01@gmail.com" className="hover:text-cyan-neon truncate">
