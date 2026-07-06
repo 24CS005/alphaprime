@@ -86,6 +86,12 @@ function Index() {
   const [scrolled, setScrolled] = useState(false);
   useReveal();
   useEffect(() => {
+    if (window.location.hash) {
+      window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
+    }
+    window.history.scrollRestoration = "manual";
+    window.scrollTo(0, 0);
+
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
