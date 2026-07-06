@@ -15,7 +15,6 @@ const nav = [
   { label: "Home", href: "#home" },
   { label: "Manifesto", href: "/manifesto" },
   { label: "Curriculum", href: "#curriculum" },
-  { label: "Who Can Join", href: "#audience" },
   { label: "Contact", href: "#contact" },
 ];
 
