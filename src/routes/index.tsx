@@ -138,12 +138,12 @@ function Index() {
               <div className="h-10 w-10 shrink-0 rounded-xl overflow-hidden neon-border">
                 <img src="/alp.png" alt="Alpha Prime" className="h-full w-full object-cover" />
               </div>
-              <div className="hidden sm:block min-w-0 leading-tight">
-                <div className="text-[13px] font-bold tracking-[0.18em] text-silver truncate">
+              <div className="flex flex-col justify-center min-w-0 leading-tight">
+                <div className="text-sm md:text-xl font-bold tracking-[0.18em] text-silver truncate">
                   ALPHA PRIME <span className="text-cyan-neon">TECHNOLOGIES</span>
                 </div>
-                <div className="text-[10px] tracking-[0.28em] text-muted-foreground">
-                  INNOVATE • CONNECT • ELEVATE
+                <div className="hidden md:block text-[10px] md:text-[11px] font-semibold uppercase tracking-[0.22em] text-cyan-neon/90 drop-shadow-[0_0_8px_rgba(34,211,238,0.35)]">
+                  from zero to infinite connections
                 </div>
               </div>
             </a>
@@ -155,10 +155,6 @@ function Index() {
                   <span className="absolute left-4 right-4 -bottom-0.5 h-px bg-cyan-neon scale-x-0 group-hover:scale-x-100 origin-left transition-transform" />
                 </a>
               ))}
-              <a href="#register"
-                className="ml-2 inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold bg-cyan-neon/10 text-cyan-neon border border-cyan-neon/40 neon-glow-hover">
-                Register <ArrowRight className="h-4 w-4" />
-              </a>
             </nav>
             <button onClick={() => setOpen((v) => !v)}
               className="md:hidden ml-auto p-2 rounded-lg text-cyan-neon" aria-label="menu">
@@ -181,12 +177,12 @@ function Index() {
       {/* HERO */}
       <section className="relative pt-32 md:pt-40 pb-20 md:pb-28 grid-bg">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <div className="flex justify-end mb-8 reveal">
-            <div className="glass neon-border rounded-full px-4 py-2 flex items-center gap-2 text-[11px] md:text-xs tracking-[0.2em] font-semibold">
+          <div className="flex justify-center mb-8 reveal">
+            <div className="glass neon-border rounded-full px-4 py-2 flex items-center justify-center gap-2 text-[11px] md:text-xs tracking-[0.2em] font-semibold mx-auto">
               <Rocket className="h-4 w-4 text-cyan-neon drop-shadow-[0_0_8px_var(--cyan-neon)]" />
-              <span className="text-silver">BUILD TODAY.</span>
-              <span className="text-cyan-neon">INNOVATE TOMORROW.</span>
-              <span className="text-silver hidden sm:inline">LEAD THE FUTURE.</span>
+              <span className="text-cyan-neon uppercase drop-shadow-[0_0_10px_var(--cyan-neon)] text-center">
+                FROM ZERO TO INFINITE CONNECTIONS
+              </span>
             </div>
           </div>
 
@@ -212,10 +208,10 @@ function Index() {
               </p>
 
               <div className="mt-8 flex flex-wrap items-center gap-4">
-                <a href="#register"
+                <a href="#curriculum"
                   className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-primary-foreground bg-gradient-to-r from-cyan-neon to-electric neon-glow hover:shadow-[0_0_40px_var(--cyan-neon)] transition-all">
                   <Rocket className="h-5 w-5" />
-                  Register Early (Limited Seats)
+                  Register Now !
                   <ChevronRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </a>
                 <a href="#curriculum" className="text-sm text-muted-foreground hover:text-cyan-neon transition-colors">
@@ -472,53 +468,6 @@ function Index() {
         </div>
       </section>
 
-      {/* EVENT STATUS */}
-      <section id="register" className="py-16">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <div className="premium-tech-card glow-cyan rounded-3xl p-6 md:p-8 relative overflow-hidden">
-            <div className="absolute -top-16 -right-16 h-48 w-48 rounded-full blur-3xl opacity-30 pointer-events-none"
-              style={{ background: "var(--gradient-glow)" }} />
-            <div className="relative flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-              <div>
-                <div className="text-[10px] tracking-[0.35em] text-cyan-neon">EVENT LOGISTICS</div>
-                <h3 className="mt-2 text-2xl md:text-3xl font-semibold text-silver">
-                  Schedule console is in final calibration.
-                </h3>
-                <p className="mt-2 max-w-2xl text-sm text-muted-foreground leading-relaxed">
-                  We are finalizing the release sequence so the first registered cohort gets a clean launch path.
-                </p>
-              </div>
-
-              <div className="inline-flex items-center gap-2 self-start rounded-full border border-amber-400/20 bg-amber-400/10 px-4 py-2 text-[10px] md:text-[11px] tracking-[0.28em] text-amber-100">
-                <span className="relative flex h-2.5 w-2.5 shrink-0">
-                  <span className="absolute inset-0 rounded-full bg-amber-400 animate-pulse-dot" />
-                  <span className="relative h-2.5 w-2.5 rounded-full bg-amber-300 shadow-[0_0_16px_rgba(251,191,36,0.65)]" />
-                </span>
-                Finalizing Schedule
-              </div>
-            </div>
-
-            <div className="relative mt-6 grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/5 md:grid-cols-3">
-              {logistics.map((item) => (
-                <div key={item.label} className="glass rounded-none border-0 bg-transparent p-5 md:p-6">
-                  <div className="text-[10px] tracking-[0.35em] text-cyan-neon font-semibold">{item.label}</div>
-                  <div className="mt-3 flex items-center gap-2 text-[11px] tracking-[0.28em] text-muted-foreground uppercase">
-                    <span className="h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse-dot shadow-[0_0_10px_rgba(251,191,36,0.55)]" />
-                    {item.phase}
-                  </div>
-                  <div className="mt-3 text-base md:text-lg font-semibold text-silver leading-snug">
-                    {item.value}
-                  </div>
-                  <div className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                    {item.note}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* TOOLS */}
       <section className="py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
@@ -614,7 +563,7 @@ function Index() {
                     ALPHA PRIME <span className="text-cyan-neon">TECHNOLOGIES</span>
                   </div>
                   <div className="text-[10px] tracking-[0.28em] text-muted-foreground">
-                    INNOVATE • CONNECT • ELEVATE
+                    from zero to infinite connections
                   </div>
                 </div>
               </div>
