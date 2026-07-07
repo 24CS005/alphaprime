@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Rocket, Cpu, Cloud, Wifi, Shield, CheckCircle2, Sparkles, Menu, X,
   Wrench, Zap, Users, Lightbulb, Award, Network, TrendingUp, FolderKanban,
@@ -31,7 +31,7 @@ const learningTracks = [
     items: [
       "Introduction to Internet of Things (IoT)",
       "Sensors & Actuators Interface",
-      "Microcontrollers (ESP32 / NodeMCU)",
+      "Microcontrollers (ESP8266/NodeMCU)",
       "Connectivity: Wi-Fi & IoT Protocols",
     ],
   },
@@ -105,7 +105,7 @@ const faqItems = [
 ];
 
 const tools = [
-  { title: "ESP32 / NodeMCU", detail: "Microcontroller foundations for smart hardware builds.", tag: "HARDWARE" },
+  { title: "ESP8266 / NodeMCU", detail: "Microcontroller foundations for smart hardware builds.", tag: "HARDWARE" },
   { title: "JavaScript (ES6+)", detail: "Core logic, interaction, and modern front-end control.", tag: "CODE" },
   { title: "HTML5 & CSS3", detail: "Semantic structure and responsive interface styling.", tag: "UI" },
   { title: "Wi-Fi & MQTT Protocols", detail: "Device connectivity, messaging, and live data flow.", tag: "NETWORK" },
@@ -132,6 +132,8 @@ function useReveal() {
 function Index() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [headerVisible, setHeaderVisible] = useState(true);
+  const lastScrollY = useRef(0);
   useReveal();
   useEffect(() => {
     if (window.location.hash) {
@@ -140,14 +142,29 @@ function Index() {
     window.history.scrollRestoration = "manual";
     window.scrollTo(0, 0);
 
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
+    const onScroll = () => {
+      const currentY = window.scrollY;
+      const scrollingDown = currentY > lastScrollY.current && currentY > 80;
+      const shouldShow = currentY <= 40 || !scrollingDown;
+
+      setScrolled(currentY > 20);
+      setHeaderVisible(shouldShow);
+      lastScrollY.current = currentY;
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (open) {
+      setHeaderVisible(true);
+    }
+  }, [open]);
+
   return (
-    <div id="home" className="min-h-screen text-foreground overflow-x-hidden">
-      <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${scrolled ? "py-2" : "py-4"}`}>
+    <div id="home" className="min-h-screen text-foreground overflow-x-hidden ">
+      <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${scrolled ? "py-2" : "py-4"} ${headerVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"}`}>
         <div className="mx-4 md:mx-8">
           <div className="glass rounded-2xl px-3 sm:px-4 md:px-6 py-3 flex items-center gap-3 sm:gap-4">
             <a href="#home" className="flex items-center gap-2 sm:gap-3 min-w-0 shrink-0">
@@ -255,7 +272,8 @@ function Index() {
           <div className="max-w-5xl mx-auto px-4 md:px-8">
             <SectionHead eyebrow="Manifesto" title={<><span className="text-gradient">The Alpha Prime Manifesto</span></>} />
 
-            <div className="mt-8 glass rounded-2xl p-5 sm:p-6 md:p-8 prose max-w-none text-sm text-slate-200/90">
+            <div className="group mt-8 glass rounded-2xl p-5 sm:p-6 md:p-8 prose max-w-none text-sm text-slate-200/90 relative overflow-hidden shadow-[0_0_35px_rgba(34,211,238,0.12)] animate-[pulse_4s_ease-in-out_infinite] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_45px_rgba(34,211,238,0.2)] hover:border-cyan-neon/30">
+              <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.14),transparent_45%)]" />
               <h3 className="!mb-4 text-cyan-neon">The Philosophy of Infinite Connections</h3>
               <p className="leading-8 text-slate-200/90">
                 Every transformative shift in human history has been driven by a change in how we connect. From the first
@@ -263,7 +281,7 @@ function Index() {
                 the digital landscape not as a collection of isolated tools, but as an expansive, living nervous system.
               </p>
 
-              <p className="mt-5 rounded-xl border border-cyan-neon/20 bg-cyan-neon/10 p-4 text-sm font-semibold leading-8 text-silver shadow-[0_0_30px_rgba(34,211,238,0.08)]">
+              <p className="relative mt-5 rounded-xl border border-cyan-neon/20 bg-cyan-neon/10 p-4 text-sm font-semibold leading-8 text-silver shadow-[0_0_30px_rgba(34,211,238,0.08)] animate-[pulse_3.2s_ease-in-out_infinite] transition-all duration-300 group-hover:translate-x-1 group-hover:shadow-[0_0_40px_rgba(34,211,238,0.16)]">
                 Our fundamental belief is that <em className="text-cyan-neon not-italic">the distance between an idea (Zero) and its impact (Infinity) is bridged entirely by the quality of the connection.</em>
               </p>
 
@@ -335,7 +353,7 @@ function Index() {
         <div className="max-w-5xl mx-auto px-4 md:px-8">
           <SectionHead eyebrow="Strategic" title={<><span className="text-gradient">Alpha Prime Strategic Manifestos</span></>} />
 
-          <div className="mt-8 glass rounded-2xl p-5 sm:p-6 md:p-8 prose max-w-none text-sm text-slate-200/90">
+          <div className="mt-8 glass rounded-2xl p-5 sm:p-6 md:p-8 prose max-w-none text-sm text-slate-200/90 relative overflow-hidden shadow-[0_0_30px_rgba(34,211,238,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_45px_rgba(34,211,238,0.16)] hover:border-cyan-neon/30">
             <p className="rounded-xl border border-electric/20 bg-electric/10 p-4 leading-8 text-silver shadow-[0_0_25px_rgba(101,98,255,0.08)]">
               Standard corporate goals talk about market share and revenue metrics. At Alpha Prime Technologies, we don't
               measure our horizon by standard parameters. Our main goals are built around a deeper, more striking mission:

@@ -33,7 +33,8 @@ function ManifestoPage() {
       </header>
 
       <main className="max-w-5xl mx-auto px-4 pb-24">
-        <article className="glass rounded-2xl p-5 sm:p-6 md:p-10 text-slate-200 leading-relaxed">
+        <article className="glass rounded-2xl p-5 sm:p-6 md:p-10 text-slate-200 leading-relaxed relative overflow-hidden shadow-[0_0_30px_rgba(34,211,238,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_45px_rgba(34,211,238,0.16)] hover:border-cyan-neon/30">
+          <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.12),transparent_40%)]" />
           <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-cyan-neon text-balance">
             The Alpha Prime Manifesto: The Philosophy of Infinite Connections
           </h1>
