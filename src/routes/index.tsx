@@ -25,13 +25,25 @@ const pillars = [
   { icon: Zap, title: "Innovate & Build", desc: "Turn ideas into smart solutions." },
 ];
 
-const curriculum = [
-  "Introduction to Internet of Things (IoT)",
-  "Sensors & Actuators Interface",
-  "Microcontrollers (ESP32 / NodeMCU)",
-  "Connectivity: Wi-Fi & IoT Protocols",
-  "Front-End Foundations",
-  "JavaScript Version Control",
+const learningTracks = [
+  {
+    title: "Internet of Things",
+    items: [
+      "Introduction to Internet of Things (IoT)",
+      "Sensors & Actuators Interface",
+      "Microcontrollers (ESP32 / NodeMCU)",
+      "Connectivity: Wi-Fi & IoT Protocols",
+    ],
+  },
+  {
+    title: "Web Development",
+    items: [
+      "Front-End Foundations",
+      "HTML, CSS & Responsive Design",
+      "JavaScript & Modern Web Interactivity",
+      "Version Control with Git & GitHub",
+    ],
+  },
 ];
 
 const audience = [
@@ -104,9 +116,13 @@ const tools = [
 function useReveal() {
   useEffect(() => {
     const els = document.querySelectorAll(".reveal");
+    const isMobile = window.innerWidth < 768;
     const io = new IntersectionObserver(
       (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("in")),
-      { threshold: 0.12 }
+      {
+        threshold: isMobile ? 0.08 : 0.12,
+        rootMargin: isMobile ? "0px 0px -8% 0px" : "0px 0px -6% 0px",
+      }
     );
     els.forEach((el) => io.observe(el));
     return () => io.disconnect();
@@ -133,13 +149,13 @@ function Index() {
     <div id="home" className="min-h-screen text-foreground overflow-x-hidden">
       <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${scrolled ? "py-2" : "py-4"}`}>
         <div className="mx-4 md:mx-8">
-          <div className="glass rounded-2xl px-4 md:px-6 py-3 flex items-center gap-4">
-            <a href="#home" className="flex items-center gap-3 min-w-0 shrink-0">
+          <div className="glass rounded-2xl px-3 sm:px-4 md:px-6 py-3 flex items-center gap-3 sm:gap-4">
+            <a href="#home" className="flex items-center gap-2 sm:gap-3 min-w-0 shrink-0">
               <div className="h-10 w-10 shrink-0 rounded-xl overflow-hidden neon-border">
                 <img src="/alp.png" alt="Alpha Prime" className="h-full w-full object-cover" />
               </div>
               <div className="flex flex-col justify-center min-w-0 leading-tight">
-                <div className="text-sm md:text-xl font-bold tracking-[0.18em] text-silver truncate">
+                <div className="text-[11px] sm:text-sm md:text-xl font-bold tracking-[0.18em] text-silver truncate">
                   ALPHA PRIME <span className="text-cyan-neon">TECHNOLOGIES</span>
                 </div>
                 <div className="hidden md:block text-[10px] md:text-[11px] font-semibold uppercase tracking-[0.22em] text-cyan-neon/90 drop-shadow-[0_0_8px_rgba(34,211,238,0.35)]">
@@ -157,7 +173,7 @@ function Index() {
               ))}
             </nav>
             <button onClick={() => setOpen((v) => !v)}
-              className="md:hidden ml-auto p-2 rounded-lg text-cyan-neon" aria-label="menu">
+              className="md:hidden ml-auto p-2.5 rounded-lg border border-cyan-neon/20 bg-cyan-neon/10 text-cyan-neon" aria-label="menu">
               {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
@@ -207,19 +223,19 @@ function Index() {
                 and build intelligent solutions for a connected future.
               </p>
 
-              <div className="mt-8 flex flex-wrap items-center gap-4">
+              <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
                 <a href="#curriculum"
-                  className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-primary-foreground bg-gradient-to-r from-cyan-neon to-electric neon-glow hover:shadow-[0_0_40px_var(--cyan-neon)] transition-all">
+                  className="group inline-flex w-full sm:w-auto items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-primary-foreground bg-gradient-to-r from-cyan-neon to-electric neon-glow hover:shadow-[0_0_40px_var(--cyan-neon)] transition-all">
                   <Rocket className="h-5 w-5" />
                   Register Now !
                   <ChevronRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </a>
-                <a href="#curriculum" className="text-sm text-muted-foreground hover:text-cyan-neon transition-colors">
+                <a href="#curriculum" className="text-sm text-muted-foreground hover:text-cyan-neon transition-colors text-center sm:text-left">
                   See curriculum →
                 </a>
               </div>
 
-              <div className="mt-10 grid grid-cols-3 gap-4 max-w-md">
+              <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-lg sm:max-w-md mx-auto sm:mx-0">
                 {[{ k: "6+", v: "Modules" }, { k: "Live", v: "Projects" }, { k: "1:1", v: "Mentorship" }].map((s) => (
                   <div key={s.v} className="premium-tech-card glow-emerald rounded-xl px-3 py-3 text-center">
                     <div className="text-2xl font-bold text-gradient">{s.k}</div>
@@ -239,72 +255,74 @@ function Index() {
           <div className="max-w-5xl mx-auto px-4 md:px-8">
             <SectionHead eyebrow="Manifesto" title={<><span className="text-gradient">The Alpha Prime Manifesto</span></>} />
 
-            <div className="mt-8 glass rounded-2xl p-6 prose max-w-none text-sm text-muted-foreground">
-              <h3>The Philosophy of Infinite Connections</h3>
-              <p>
+            <div className="mt-8 glass rounded-2xl p-5 sm:p-6 md:p-8 prose max-w-none text-sm text-slate-200/90">
+              <h3 className="!mb-4 text-cyan-neon">The Philosophy of Infinite Connections</h3>
+              <p className="leading-8 text-slate-200/90">
                 Every transformative shift in human history has been driven by a change in how we connect. From the first
                 spoken word to the printing press, connection is the engine of evolution. At Alpha Prime Technologies, we view
                 the digital landscape not as a collection of isolated tools, but as an expansive, living nervous system.
               </p>
 
-              <p className="font-semibold">Our fundamental belief is that <em>the distance between an idea (Zero) and its impact (Infinity) is bridged entirely by the quality of the connection.</em></p>
+              <p className="mt-5 rounded-xl border border-cyan-neon/20 bg-cyan-neon/10 p-4 text-sm font-semibold leading-8 text-silver shadow-[0_0_30px_rgba(34,211,238,0.08)]">
+                Our fundamental belief is that <em className="text-cyan-neon not-italic">the distance between an idea (Zero) and its impact (Infinity) is bridged entirely by the quality of the connection.</em>
+              </p>
 
-              <h4>Three Core Pillars of Our Engineering Ideology</h4>
-              <ol>
-                <li>
-                  <strong>The Symmetry of Matter and Logic</strong>
-                  <p>
+              <h4 className="!mt-7 text-lg uppercase tracking-[0.2em] text-silver">Three Core Pillars of Our Engineering Ideology</h4>
+              <ol className="mt-4 space-y-4">
+                <li className="rounded-xl border border-white/10 bg-white/5 p-4">
+                  <strong className="text-silver">The Symmetry of Matter and Logic</strong>
+                  <p className="mt-2 leading-7 text-slate-200/85">
                     We reject the modern tech divide that separates hardware engineers from software developers. True
                     innovation happens at the intersection. A physical sensor is a biological eye; a line of code is a thought
                     path. We build and teach so software gracefully commands the physical world, and the physical world
                     seamlessly informs software.
                   </p>
                 </li>
-                <li>
-                  <strong>The Micro-to-Macro Scale (From Zero to Infinite)</strong>
-                  <p>
+                <li className="rounded-xl border border-white/10 bg-white/5 p-4">
+                  <strong className="text-silver">The Micro-to-Macro Scale (From Zero to Infinite)</strong>
+                  <p className="mt-2 leading-7 text-slate-200/85">
                     Every massive network begins with a single bit — a 0 or a 1. Foundations must be flawless. A single
                     well-crafted microcontroller program or thoughtful web architecture can scale into dependable, global
                     systems. We treat the smallest component with the highest reverence.
                   </p>
                 </li>
-                <li>
-                  <strong>Open Architectures, Unlimited Futures</strong>
-                  <p>
+                <li className="rounded-xl border border-white/10 bg-white/5 p-4">
+                  <strong className="text-silver">Open Architectures, Unlimited Futures</strong>
+                  <p className="mt-2 leading-7 text-slate-200/85">
                     Technology should liberate, not lock down. Whether building enterprise solutions or student frameworks,
                     our ideology demands open, modular, and scalable design. We do not build dead-ends; we build launching pads.
                   </p>
                 </li>
               </ol>
 
-              <h4>The Educational Manifesto: Rewriting the Human Code</h4>
-              <p>
+              <h4 className="!mt-7 text-lg uppercase tracking-[0.2em] text-silver">The Educational Manifesto: Rewriting the Human Code</h4>
+              <p className="leading-8 text-slate-200/90">
                 Our workshops and training programs are not mere tutorials; they are an intervention in modern education. We
                 move learners from passive consumption to active architecture — empowering students to become authors of
                 technology rather than just users of it.
               </p>
 
-              <h5>The End of Passive Consumption</h5>
-              <p>
+              <h5 className="!mt-6 text-base uppercase tracking-[0.2em] text-cyan-neon">The End of Passive Consumption</h5>
+              <p className="leading-8 text-slate-200/90">
                 The modern generation is surrounded by digital magic, yet most are merely passive consumers. We shatter this
                 illusion and transform students into builders with practical kits, live servers, and project-driven learning.
               </p>
 
-              <h5>Demystifying the Complex</h5>
-              <p>
+              <h5 className="!mt-6 text-base uppercase tracking-[0.2em] text-cyan-neon">Demystifying the Complex</h5>
+              <p className="leading-8 text-slate-200/90">
                 No technology is too advanced for a curious mind when taught through intuitive analogy. We teach concepts as
                 metaphors — HTML as the structural skeleton, CSS as the aesthetic wardrobe, JavaScript as the nervous system
                 that animates ideas.
               </p>
 
-              <h5>Democratizing Innovation</h5>
-              <p>
+              <h5 className="!mt-6 text-base uppercase tracking-[0.2em] text-cyan-neon">Democratizing Innovation</h5>
+              <p className="leading-8 text-slate-200/90">
                 Genius is distributed evenly; opportunity is not. Our mission is to put development kits, microcontrollers, and
                 live web servers directly into the hands of young minds so they can solve real-world problems immediately.
               </p>
 
-              <h4>The Eternal Metric: How We Measure Success</h4>
-              <p>
+              <h4 className="!mt-7 text-lg uppercase tracking-[0.2em] text-silver">The Eternal Metric: How We Measure Success</h4>
+              <p className="leading-8 text-slate-200/90">
                 Our ultimate benchmark is the awakening of creative agency: the exact moment a student, partner, or client
                 sees a real-world problem and says, "I can build the solution myself." From the void of a blank screen to the
                 infinite possibilities of a connected world, we are the architects of the bridge. We are Alpha Prime.
@@ -317,55 +335,55 @@ function Index() {
         <div className="max-w-5xl mx-auto px-4 md:px-8">
           <SectionHead eyebrow="Strategic" title={<><span className="text-gradient">Alpha Prime Strategic Manifestos</span></>} />
 
-          <div className="mt-8 glass rounded-2xl p-6 prose max-w-none text-sm text-muted-foreground">
-            <p>
+          <div className="mt-8 glass rounded-2xl p-5 sm:p-6 md:p-8 prose max-w-none text-sm text-slate-200/90">
+            <p className="rounded-xl border border-electric/20 bg-electric/10 p-4 leading-8 text-silver shadow-[0_0_25px_rgba(101,98,255,0.08)]">
               Standard corporate goals talk about market share and revenue metrics. At Alpha Prime Technologies, we don't
               measure our horizon by standard parameters. Our main goals are built around a deeper, more striking mission:
               shifting humanity from blind, passive technological consumption into a future of active, infinite architecture.
             </p>
 
-            <h4>1. The 100,000 "Architect" Directive</h4>
-            <p>
+            <h4 className="!mt-7 text-lg uppercase tracking-[0.2em] text-cyan-neon">1. The 100,000 "Architect" Directive</h4>
+            <p className="leading-8 text-slate-200/90">
               We refuse to evaluate the impact of our educational bootcamps through empty metrics like attendance sheets or
-              certificates issued. Our concrete target is to turn <strong>100,000 passive device users into independent digital architects</strong>
+              certificates issued. Our concrete target is to turn <strong className="text-silver">100,000 passive device users into independent digital architects</strong>
               before the close of the decade.
             </p>
-            <ul>
-              <li><strong>The Benchmark:</strong> Tracked by unique, student-authored code repositories published online and the number of live IoT nodes running within our network.</li>
-              <li><strong>The Shift:</strong> Success is when a student treats their device as a dynamic canvas for systematic programming rather than passive entertainment.</li>
+            <ul className="mt-3 space-y-3">
+              <li className="rounded-lg border border-white/10 bg-white/5 p-3 leading-7 text-slate-200/85"><strong className="text-silver">The Benchmark:</strong> Tracked by unique, student-authored code repositories published online and the number of live IoT nodes running within our network.</li>
+              <li className="rounded-lg border border-white/10 bg-white/5 p-3 leading-7 text-slate-200/85"><strong className="text-silver">The Shift:</strong> Success is when a student treats their device as a dynamic canvas for systematic programming rather than passive entertainment.</li>
             </ul>
 
-            <h4>2. The Law of Radical Demystification (The "No-Black-Box" Mandate)</h4>
-            <p>
+            <h4 className="!mt-7 text-lg uppercase tracking-[0.2em] text-cyan-neon">2. The Law of Radical Demystification (The "No-Black-Box" Mandate)</h4>
+            <p className="leading-8 text-slate-200/90">
               Technical intimidation is the greatest barrier preventing younger students from exploring advanced engineering.
-              We enforce a strict law across all Alpha Prime tracks: <em>Every line of code and every piece of silicon must be mapped to an intuitive human equivalent.</em>
+              We enforce a strict law across all Alpha Prime tracks: <em className="text-cyan-neon not-italic">Every line of code and every piece of silicon must be mapped to an intuitive human equivalent.</em>
             </p>
-            <ul>
-              <li><strong>Structure as Flesh:</strong> HTML as the Structural Skeleton of human intent.</li>
-              <li><strong>Design as Character:</strong> CSS as the Aesthetic Wardrobe of identity.</li>
-              <li><strong>Logic as Life:</strong> JavaScript as the Nervous System that animates interfaces.</li>
-              <li><strong>Hardware as Senses:</strong> IoT components presented as physical eyes, ears, and muscles.</li>
+            <ul className="mt-3 space-y-3">
+              <li className="rounded-lg border border-white/10 bg-white/5 p-3 leading-7 text-slate-200/85"><strong className="text-silver">Structure as Flesh:</strong> HTML as the Structural Skeleton of human intent.</li>
+              <li className="rounded-lg border border-white/10 bg-white/5 p-3 leading-7 text-slate-200/85"><strong className="text-silver">Design as Character:</strong> CSS as the Aesthetic Wardrobe of identity.</li>
+              <li className="rounded-lg border border-white/10 bg-white/5 p-3 leading-7 text-slate-200/85"><strong className="text-silver">Logic as Life:</strong> JavaScript as the Nervous System that animates interfaces.</li>
+              <li className="rounded-lg border border-white/10 bg-white/5 p-3 leading-7 text-slate-200/85"><strong className="text-silver">Hardware as Senses:</strong> IoT components presented as physical eyes, ears, and muscles.</li>
             </ul>
 
-            <h4>3. Absolute Fusion of Matter and Logic</h4>
-            <p>
+            <h4 className="!mt-7 text-lg uppercase tracking-[0.2em] text-cyan-neon">3. Absolute Fusion of Matter and Logic</h4>
+            <p className="leading-8 text-slate-200/90">
               The industry is fractured—web devs rarely understand circuitry; hardware engineers rarely build interfaces.
               Alpha Prime's core objective is to obliterate this division: every track and system must fuse both worlds flawlessly.
             </p>
 
-            <h4>4. Establishing the "Zero-Barrier" Sandbox Launchpad</h4>
-            <p>
+            <h4 className="!mt-7 text-lg uppercase tracking-[0.2em] text-cyan-neon">4. Establishing the "Zero-Barrier" Sandbox Launchpad</h4>
+            <p className="leading-8 text-slate-200/90">
               Genius is distributed evenly, but access is not. Our primary goal is to eliminate financial and geographical
               barriers to advanced STEM learning by partnering with academic institutions to create plug-and-play
               Alpha Prime Innovation Labs on campuses.
             </p>
-            <ul>
-              <li><strong>The Infrastructure Goal:</strong> Permanently equipped campus labs with microcontrollers, cloud-hosting pipelines, and test components.</li>
-              <li><strong>The Sandbox Blueprint:</strong> Students gain immediate agency to design, build, and deploy production-grade solutions from their desks.</li>
+            <ul className="mt-3 space-y-3">
+              <li className="rounded-lg border border-white/10 bg-white/5 p-3 leading-7 text-slate-200/85"><strong className="text-silver">The Infrastructure Goal:</strong> Permanently equipped campus labs with microcontrollers, cloud-hosting pipelines, and test components.</li>
+              <li className="rounded-lg border border-white/10 bg-white/5 p-3 leading-7 text-slate-200/85"><strong className="text-silver">The Sandbox Blueprint:</strong> Students gain immediate agency to design, build, and deploy production-grade solutions from their desks.</li>
             </ul>
 
-            <h4>🔮 The Ultimate Metric</h4>
-            <p>
+            <h4 className="!mt-7 text-lg uppercase tracking-[0.2em] text-cyan-neon">🔮 The Ultimate Metric</h4>
+            <p className="leading-8 text-slate-200/90">
               Our ultimate milestone is reached when a student or institution confidently states: "I do not need to wait for a
               third-party corporation to build a solution for this. I possess the exact tools, the foundational logic, and the
               infinite connections required to design and deploy it myself."
@@ -379,7 +397,7 @@ function Index() {
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <SectionHead eyebrow="Core Pillars"
             title={<><span className="text-silver">Built to make you </span><span className="text-gradient">unstoppable</span></>} />
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-14">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mt-10 sm:mt-14">
             {pillars.map((p) => (
               <div key={p.title} className="reveal premium-tech-card glow-cyan rounded-2xl p-6 group relative overflow-hidden">
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
@@ -406,28 +424,41 @@ function Index() {
           <div className="mt-16 grid lg:grid-cols-[1fr_auto_1fr] gap-8 lg:gap-6 items-center">
             <div className="reveal">
               <div className="text-xs tracking-[0.3em] text-cyan-neon mb-4">WHAT YOU'LL LEARN</div>
-              <ul className="space-y-3">
-                {curriculum.map((c) => (
-                  <li key={c} className="glass rounded-xl px-4 py-3.5 flex items-center gap-3 neon-glow-hover group">
-                    <span className="grid place-items-center h-8 w-8 rounded-lg bg-cyan-neon/10 border border-cyan-neon/40 text-cyan-neon shrink-0 group-hover:bg-cyan-neon group-hover:text-primary-foreground transition-colors">
-                      <CheckCircle2 className="h-4 w-4" />
-                    </span>
-                    <span className="text-sm text-silver">{c}</span>
-                  </li>
+              <Accordion type="single" collapsible className="space-y-3">
+                {learningTracks.map((track) => (
+                  <AccordionItem
+                    key={track.title}
+                    value={track.title}
+                    className="rounded-2xl border border-white/10 bg-white/5 px-4 data-[state=open]:border-cyan-neon/30 data-[state=open]:bg-cyan-neon/5"
+                  >
+                    <AccordionTrigger className="py-4 text-left text-sm md:text-base font-semibold text-silver hover:no-underline">
+                      {track.title}
+                    </AccordionTrigger>
+                    <AccordionContent className="pb-4 pr-4 sm:pr-8">
+                      <ul className="space-y-2">
+                        {track.items.map((item) => (
+                          <li key={item} className="flex items-start gap-2 text-sm text-slate-200/90">
+                            <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-cyan-neon" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </AccordionContent>
+                  </AccordionItem>
                 ))}
-              </ul>
+              </Accordion>
             </div>
 
-            <div className="reveal hidden lg:flex flex-col items-center justify-center px-4">
-              <div className="relative h-56 w-56">
+            <div className="reveal flex flex-col items-center justify-center px-2 py-4 sm:px-4 lg:px-4 lg:py-0">
+              <div className="relative h-24 w-24 sm:h-40 sm:w-40 lg:h-56 lg:w-56">
                 <div className="absolute inset-0 rounded-full animate-pulse-ring" />
-                <div className="absolute inset-4 rounded-full border border-cyan-neon/30" />
-                <div className="absolute inset-10 rounded-full border border-cyan-neon/20" />
+                <div className="absolute inset-3 sm:inset-4 lg:inset-4 rounded-full border border-cyan-neon/30" />
+                <div className="absolute inset-7 sm:inset-10 lg:inset-10 rounded-full border border-cyan-neon/20" />
                 <div className="absolute inset-0 grid place-items-center">
-                  <Lightbulb className="h-24 w-24 text-cyan-neon drop-shadow-[0_0_24px_var(--cyan-neon)] animate-float" />
+                  <Lightbulb className="h-12 w-12 sm:h-20 sm:w-20 lg:h-24 lg:w-24 text-cyan-neon drop-shadow-[0_0_24px_var(--cyan-neon)] animate-float" />
                 </div>
               </div>
-              <div className="mt-4 text-[10px] tracking-[0.3em] text-muted-foreground">IDEAS · IGNITED</div>
+              <div className="mt-3 lg:mt-4 text-[10px] tracking-[0.3em] text-muted-foreground">IDEAS · IGNITED</div>
             </div>
 
             <div className="reveal">
@@ -449,7 +480,7 @@ function Index() {
       {/* PERKS */}
       <section className="py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <div className="glass rounded-3xl p-6 md:p-10 relative overflow-hidden">
+          <div className="glass rounded-3xl p-5 sm:p-6 md:p-10 relative overflow-hidden">
             <div className="absolute -top-20 -right-20 h-64 w-64 rounded-full blur-3xl opacity-30"
               style={{ background: "var(--gradient-glow)" }} />
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 relative">

@@ -178,6 +178,10 @@
   from { opacity: 0; transform: translateY(28px); }
   to { opacity: 1; transform: translateY(0); }
 }
+@keyframes fade-up-mobile {
+  from { opacity: 0; transform: translateY(18px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
 @keyframes orbit {
   from { transform: rotate(0deg) translateX(var(--r,180px)) rotate(0deg); }
   to { transform: rotate(360deg) translateX(var(--r,180px)) rotate(-360deg); }
@@ -197,3 +201,9 @@
 .animate-pulse-dot { animation: pulse-dot 1.4s ease-in-out infinite; }
 .reveal { opacity: 0; }
 .reveal.in { animation: fade-up 0.9s ease-out forwards; }
+
+@media (max-width: 767px) {
+  .reveal.in {
+    animation: fade-up-mobile 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+}

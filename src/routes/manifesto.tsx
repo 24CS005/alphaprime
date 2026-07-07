@@ -1,6 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Section } from "react";
-import logo from "@/assets/alpha-prime-logo.png.asset.json";
+import { createFileRoute, Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/manifesto")({ component: ManifestoPage });
 
@@ -9,24 +7,33 @@ function ManifestoPage() {
     <div className="min-h-screen text-foreground">
       <header className="pt-8 pb-6">
         <div className="max-w-5xl mx-auto px-4">
-          <div className="flex items-center gap-4">
-            <div className="h-12 w-12 rounded-xl overflow-hidden neon-border">
-              <img src="/alp.png" alt="Alpha Prime" className="h-full w-full object-cover" />
-            </div>
-            <div>
-              <div className="text-lg font-bold tracking-[0.16em] text-silver uppercase">
-                Alpha Prime Technologies
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-center gap-4">
+              <div className="h-12 w-12 rounded-xl overflow-hidden neon-border">
+                <img src="/alp.png" alt="Alpha Prime" className="h-full w-full object-cover" />
               </div>
-              <div className="text-xs md:text-[11px] font-medium tracking-[0.28em] text-cyan-neon/80 uppercase">
-                The Philosophy of Infinite Connections
+              <div>
+                <div className="text-lg font-bold tracking-[0.16em] text-silver uppercase">
+                  Alpha Prime Technologies
+                </div>
+                <div className="text-xs md:text-[11px] font-medium tracking-[0.28em] text-cyan-neon/80 uppercase">
+                  The Philosophy of Infinite Connections
+                </div>
               </div>
             </div>
+
+            <Link
+              to="/"
+              className="inline-flex w-full sm:w-auto items-center justify-center rounded-full border border-cyan-neon/30 bg-cyan-neon/10 px-4 py-2 text-sm font-semibold text-cyan-neon transition-all hover:bg-cyan-neon/20 hover:shadow-[0_0_20px_rgba(34,211,238,0.18)]"
+            >
+              ← Back to Home
+            </Link>
           </div>
         </div>
       </header>
 
       <main className="max-w-5xl mx-auto px-4 pb-24">
-        <article className="glass rounded-2xl p-8 md:p-10 text-slate-200 leading-relaxed">
+        <article className="glass rounded-2xl p-5 sm:p-6 md:p-10 text-slate-200 leading-relaxed">
           <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-cyan-neon text-balance">
             The Alpha Prime Manifesto: The Philosophy of Infinite Connections
           </h1>
