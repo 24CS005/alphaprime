@@ -176,7 +176,7 @@ function Index() {
                   ALPHA PRIME <span className="text-cyan-neon">TECHNOLOGIES</span>
                 </div>
                 <div className="hidden md:block text-[10px] md:text-[11px] font-semibold uppercase tracking-[0.22em] text-cyan-neon/90 drop-shadow-[0_0_8px_rgba(34,211,238,0.35)]">
-                  from zero to infinite connections
+                  INNOVATE | CONNECT | ELEVATE
                 </div>
               </div>
             </a>
